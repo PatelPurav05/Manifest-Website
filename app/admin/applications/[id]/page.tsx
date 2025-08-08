@@ -3,7 +3,7 @@ import { getSupabaseServer } from "@/lib/supabase/server"
 import { AdminAppDetail } from "./ui"
 
 export default async function AdminApplicationDetail({ params }: { params: { id: string } }) {
-  const supabase = getSupabaseServer()
+  const supabase = await getSupabaseServer()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect("/auth")
 

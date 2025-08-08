@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache"
 import { getSupabaseServer } from "@/lib/supabase/server"
 
 export async function addAdminComment(applicationId: string, comment: string) {
-  const supabase = getSupabaseServer()
+  const supabase = await getSupabaseServer()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { success: false as const, error: "Not authenticated" }
 
@@ -18,7 +18,7 @@ export async function addAdminComment(applicationId: string, comment: string) {
 }
 
 export async function setAdminSelection(applicationId: string, selection: "yes" | "maybe" | "no") {
-  const supabase = getSupabaseServer()
+  const supabase = await getSupabaseServer()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { success: false as const, error: "Not authenticated" }
 

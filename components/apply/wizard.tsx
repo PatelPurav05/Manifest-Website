@@ -8,6 +8,7 @@ import { saveDraft, submitApplication } from "@/app/apply/actions"
 import { Loader2, CheckCircle2 } from 'lucide-react'
 
 type ApplicationData = {
+  id: string
   name: string
   email: string
   year: string
@@ -37,6 +38,7 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
       try {
         setStatus("saving")
         const res = await saveDraft({
+          id: data.id,
           name: data.name,
           email: data.email,
           year: data.year,
@@ -230,7 +232,7 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                           setError("Please complete all required fields.")
                           return
                         }
-                        const res = await submitApplication()
+                        const res = await submitApplication(data.id)
                         if (res.success) {
                           setSubmittedId(res.appId ?? null)
                         } else {
@@ -248,6 +250,39 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
           </CardContent>
         </Card>
       </div>
+    </div>
+  )
+}
+
+function SelectField({
+  label,
+  id,
+  value,
+  onChange,
+  options,
+}: {
+  label: string
+  id: string
+  value: string
+  onChange: (v: string) => void
+  options: Array<{ value: string; label: string; disabled?: boolean }>
+}) {
+  return (
+    <div className="space-y-2">
+      <label htmlFor={id} className="text-sm text-slate-11">{label}</label>
+      <select
+        id={id}
+        name={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-11 w-full rounded-lg border border-slate-6 bg-slate-1 px-3 text-sm text-slate-12"
+      >
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value} disabled={opt.disabled}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }

@@ -8,7 +8,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing email or token" }, { status: 400 })
     }
 
-    const supabase = getSupabaseServer()
+    const supabase = await getSupabaseServer()
     // Verify the 6-digit code and set the auth cookies for SSR
     const { error } = await supabase.auth.verifyOtp({
       email,

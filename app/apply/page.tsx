@@ -5,7 +5,7 @@ import { ApplyWizard } from "@/components/apply/wizard"
 export const dynamic = "force-dynamic"
 
 export default async function ApplyPage() {
-  const supabase = getSupabaseServer()
+  const supabase = await getSupabaseServer()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -14,11 +14,13 @@ export default async function ApplyPage() {
     redirect("/auth")
   }
 
-  // Fetch existing application or create a new draft for this user
+  // Fetch latest existing application or create a new draft for this user
   const { data: existing, error: selectError } = await supabase
     .from("applications")
     .select("*")
     .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .limit(1)
     .maybeSingle()
 
   if (selectError) {
@@ -49,6 +51,7 @@ export default async function ApplyPage() {
   return (
     <ApplyWizard
       initialData={{
+        id: appRow!.id as any,
         name: appRow?.name ?? "",
         email: appRow?.email ?? user.email ?? "",
         year: appRow?.year ?? "",

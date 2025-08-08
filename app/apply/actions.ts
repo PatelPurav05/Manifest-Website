@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache"
 import { getSupabaseServer } from "@/lib/supabase/server"
 
 export async function saveDraft(input: {
+  id: string
   name?: string
   email?: string
   year?: string
@@ -14,7 +15,7 @@ export async function saveDraft(input: {
   progress?: string
   links?: string
 }) {
-  const supabase = getSupabaseServer()
+  const supabase = await getSupabaseServer()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -34,13 +35,13 @@ export async function saveDraft(input: {
       links: input.links,
       updated_at: new Date().toISOString(),
     })
-    .eq("user_id", user.id)
+    .eq("id", input.id)
   if (error) return { success: false as const, error: error.message }
   return { success: true as const }
 }
 
-export async function submitApplication() {
-  const supabase = getSupabaseServer()
+export async function submitApplication(applicationId: string) {
+  const supabase = await getSupabaseServer()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -50,7 +51,7 @@ export async function submitApplication() {
   const { data, error } = await supabase
     .from("applications")
     .update({ submitted_at: new Date().toISOString() })
-    .eq("user_id", user.id)
+    .eq("id", applicationId)
     .select("id")
     .single()
   if (error) return { success: false as const, error: error.message }
