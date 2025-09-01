@@ -15,11 +15,11 @@ export function Providers({
 }) {
   return (
     <ThemeProvider
-      enableSystem
+      enableSystem={false}
       disableTransitionOnChange
       attribute="class"
-      defaultTheme={defaultTheme || "system"}
-      forcedTheme={forcedTheme || undefined}
+      defaultTheme="dark"
+      forcedTheme="dark"
     >
       {children}
     </ThemeProvider>

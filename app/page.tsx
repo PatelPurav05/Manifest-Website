@@ -29,7 +29,7 @@ export default async function Page() {
       {/* Above-the-fold: hero + social proof */}
       <HeroSection />
       <MetricsSection />
-      <SponsorsSection />
+      {/* <SponsorsSection /> */}
 
       {/* Core value + social proof (compact) */}
       <ProgramsSection />
@@ -43,7 +43,7 @@ export default async function Page() {
       {/* Credibility + questions */}
       <BoardSection />
       <TestimonialsSection />
-      <FAQSection />
+      {/* <FAQSection /> */}
 
       <Footer />
     </div>

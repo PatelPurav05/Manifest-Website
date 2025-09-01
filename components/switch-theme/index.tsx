@@ -4,10 +4,10 @@ import * as React from 'react'
 import { useTheme } from 'next-themes'
 import clsx from 'clsx'
 
-const options = ['dark', 'system', 'light'] as const
+const options = ['dark'] as const
 
 export function ThemeSwitcher({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme()
+  const { theme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
   // Handle mounting state
@@ -44,7 +44,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
               fontFeatureSettings: '"ss01"',
               fontVariationSettings: '"wght" 500',
             }}
-            onClick={() => setTheme(option)}
+            onClick={() => {}}
           >
             <span className="first-letter:uppercase">{option}</span>
           </button>

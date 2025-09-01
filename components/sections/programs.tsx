@@ -27,7 +27,7 @@ export function ProgramsSection() {
   ]
 
   return (
-    <section id="programs" className="py-16 md:py-24 px-5">
+    <section id="programs" className="py-16 bg-slate-2 md:py-24 px-5">
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <div className="text-center space-y-4 mb-14">

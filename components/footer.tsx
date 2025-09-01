@@ -10,19 +10,7 @@ export function Footer() {
         <nav aria-label="Footer">
           <ul className="flex items-center gap-4 text-sm">
             <li>
-              <a href="#programs" className="text-slate-11 hover:text-slate-12">Programs</a>
-            </li>
-            <li>
-              <a href="#events" className="text-slate-11 hover:text-slate-12">Events</a>
-            </li>
-            <li>
-              <a href="#startups" className="text-slate-11 hover:text-slate-12">Startups</a>
-            </li>
-            <li>
-              <a href="#faq" className="text-slate-11 hover:text-slate-12">FAQ</a>
-            </li>
-            <li>
-              <a href="#join" className="text-slate-11 hover:text-slate-12">Join</a>
+              <a href="https://www.notion.so/Manifest-Manifesto-21bb5ad6175e80edae51dd5383ef12d7" className="text-slate-11 hover:text-slate-12">Our Manifesto</a>
             </li>
           </ul>
         </nav>

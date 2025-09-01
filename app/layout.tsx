@@ -31,7 +31,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.className} antialiased max-w-screen min-h-svh bg-slate-1 text-slate-12`}>
-        <Providers defaultTheme="system" forcedTheme={null}>
+        <Providers defaultTheme="dark" forcedTheme="dark">
           <MeshGradientComponent
             colors={darkBlueColors}
             speed={2.5}

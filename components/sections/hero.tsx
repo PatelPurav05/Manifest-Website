@@ -13,6 +13,21 @@ export function HeroSection() {
       <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
         <FadeIn delay={0.1}>
           <div className="space-y-6">
+            <FadeIn delay={0.05}>
+              <div className="relative inline-block mx-auto">
+                <motion.div
+                  className="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-b from-slate-12/10 via-slate-12/5 to-transparent blur-2xl"
+                  initial={{ opacity: 0.5, scale: 1 }}
+                  animate={{ opacity: [0.45, 0.75, 0.45], scale: [1, 1.07, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <img
+                  src="/Manifest Logo.png"
+                  alt="Manifest logo"
+                  className="relative z-10 h-48 sm:h-48 object-contain drop-shadow-[0_0_18px_rgba(0,0,0,0.25)]"
+                />
+              </div>
+            </FadeIn>
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -20,12 +35,12 @@ export function HeroSection() {
               className="relative inline-block"
             >
               <h1 className="text-5xl sm:text-7xl font-medium text-slate-12 tracking-tight">Manifest at UCI</h1>
-              <Sparkles className="absolute inset-0" count={5} speed="medium" />
+              {/* <Sparkles className="absolute inset-0" count={5} speed="medium" /> */}
             </motion.div>
 
             <FadeIn delay={0.3}>
               <p className="text-xl sm:text-2xl text-slate-11 max-w-3xl mx-auto leading-relaxed">
-                The premiere entrepreneurship organization at UC Irvine — a selective, high-energy community of student
+                The premier entrepreneurship organization at UC Irvine — a selective, high-energy community of student
                 builders.
               </p>
             </FadeIn>
@@ -35,7 +50,7 @@ export function HeroSection() {
         <FadeIn delay={0.5} direction="up" distance={30}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <motion.a
-              href="#join"
+              href="/apply"
               className="px-8 py-4 bg-slate-12 text-slate-1 rounded-full font-medium text-lg hover:bg-slate-11 transition-colors relative overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -50,7 +65,7 @@ export function HeroSection() {
             </motion.a>
 
             <motion.a
-              href="#about"
+              href="https://www.notion.so/Manifest-Manifesto-21bb5ad6175e80edae51dd5383ef12d7"
               className="px-8 py-4 border border-slate-8 text-slate-12 rounded-full font-medium text-lg hover:bg-slate-2 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

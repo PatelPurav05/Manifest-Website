@@ -5,10 +5,10 @@ import { FadeIn } from "@/components/ui/fade-in"
 
 export function MetricsSection() {
   const metrics = [
-    { value: "50+", label: "Active Members" },
-    { value: "15%", label: "Acceptance Rate" },
-    { value: "$2M+", label: "Raised by Alumni" },
-    { value: "100+", label: "Events & Workshops" },
+    { value: "25M+", label: "Revenue by Manifest Startups" },
+    { value: "50+", label: "Community Members" },
+    { value: "$10M+", label: "Raised by Alumni" },
+    { value: "120k+", label: "Competition Prize Money" },
   ]
 
   return (

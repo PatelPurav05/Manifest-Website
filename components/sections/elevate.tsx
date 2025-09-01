@@ -55,25 +55,40 @@ export function ElevateSection() {
 
   const timeline = [
     {
-      phase: "Phase 1",
-      title: "Foundation",
-      duration: "Months 1-3",
-      description: "Idea validation, team formation, and market research",
-      milestones: ["Market analysis", "MVP planning", "Team building", "Mentor matching"],
+      phase: "Fall (Weeks 1–10)",
+      title: "Foundation & Build",
+      duration: "Stage −1 → 0 (Idea → MVP)",
+      description: "Form teams, validate the problem, and build the first MVP.",
+      milestones: [
+        "Finalize team and idea",
+        "Validate customer problem",
+        "Scope and begin MVP",
+        "Weekly builder cadence",
+      ],
     },
     {
-      phase: "Phase 2",
-      title: "Development",
-      duration: "Months 4-8",
-      description: "Product development, user testing, and iteration",
-      milestones: ["MVP development", "User feedback", "Product iteration", "Go-to-market prep"],
-    },
-    {
-      phase: "Phase 3",
+      phase: "Winter",
       title: "Launch",
-      duration: "Months 9-12",
-      description: "Market launch, scaling, and investor presentations",
-      milestones: ["Product launch", "User acquisition", "Scaling strategy", "Demo day pitch"],
+      duration: "Stage 0 → 1 (MVP → Market)",
+      description: "Ship MVP, run pilots, and focus on early traction.",
+      milestones: [
+        "Ship MVP",
+        "Conduct pilots with users",
+        "Iterate from feedback",
+        "Establish early growth loops",
+      ],
+    },
+    {
+      phase: "Spring",
+      title: "Scale & Showcase",
+      duration: "Stage 1+ (Scale, Demo, Pitch)",
+      description: "Scale what works, compete, and present at Demo Day.",
+      milestones: [
+        "Build and launch updates",
+        "Compete in SZ NVC & Beall-Butterworth",
+        "Investor readiness",
+        "Demo Day presentation",
+      ],
     },
   ]
 
@@ -178,37 +193,60 @@ export function ElevateSection() {
           </div>
         </FadeIn>
 
-        {/* Core Benefits with Animated Beams */}
-        <div className="relative">
-          <FadeIn delay={0.5}>
-            <h3 className="text-3xl font-medium text-slate-12 text-center mb-16">Comprehensive Support System</h3>
-            <div className="grid lg:grid-cols-3 gap-12 items-center">
-              {/* Existing benefits code here */}
-            </div>
-          </FadeIn>
+        {/* Applications & Weekly Schedule */}
+        <FadeIn delay={0.5}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div
+              className="rounded-2xl border border-slate-6 bg-slate-1 p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+            >
+              <h3 className="text-xl font-medium text-slate-12 mb-4">Application Process</h3>
+              <ul className="space-y-3 text-slate-11">
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-slate-8" />
+                  <span><strong>Round 1 — Applications</strong> (Open Week 1, Due Week 3)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-slate-8" />
+                  <span><strong>Round 2 — Interviews</strong> (Week 4)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-slate-8" />
+                  <span><strong>Team Formation</strong> (Week 5): Tech Lead, Design Lead, Market Lead, Sales Lead</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-slate-8" />
+                  <span><strong>Idea Finalization</strong> (By Week 7)</span>
+                </li>
+              </ul>
+              <p className="text-sm text-slate-10 mt-4">Once per year. Limited seats. Selective and community-first.</p>
+            </motion.div>
 
-          {/* Animated Beams connecting the benefits */}
-          {containerRef.current && feature1Ref.current && feature2Ref.current && (
-            <AnimatedBeam
-              containerRef={containerRef}
-              fromRef={feature1Ref}
-              toRef={feature2Ref}
-              gradientStartColor="#8b5cf6"
-              gradientStopColor="#3b82f6"
-              delay={1}
-            />
-          )}
-          {containerRef.current && feature2Ref.current && feature3Ref.current && (
-            <AnimatedBeam
-              containerRef={containerRef}
-              fromRef={feature2Ref}
-              toRef={feature3Ref}
-              gradientStartColor="#3b82f6"
-              gradientStopColor="#10b981"
-              delay={1.5}
-            />
-          )}
-        </div>
+            <motion.div
+              className="rounded-2xl border border-slate-6 bg-slate-1 p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.05 }}
+            >
+              <h3 className="text-xl font-medium text-slate-12 mb-4">Weekly Schedule</h3>
+              <ul className="space-y-3 text-slate-11">
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-slate-8" />
+                  <span><strong>Tuesdays, 7–9 PM — Builder Hours</strong>: Team work time, office hours, hands-on workshops by consensus.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-slate-8" />
+                  <span><strong>Wednesdays — Workshops/Guest Speakers</strong>: Founders and investors, mandatory attendance.</span>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+        </FadeIn>
+
 
         {/* Program Timeline */}
         <FadeIn delay={0.7}>
@@ -290,7 +328,7 @@ export function ElevateSection() {
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.3 }}
           >
-            <Sparkles className="absolute inset-0" count={12} speed="slow" />
+            {/* <Sparkles className="absolute inset-0" count={12} speed="slow" /> */}
 
             <div className="space-y-4 relative z-10">
               <h3 className="text-3xl font-medium text-slate-12">Ready to Build the Next Big Thing?</h3>
@@ -326,7 +364,7 @@ export function ElevateSection() {
               </motion.a>
 
               <motion.a
-                href="#learn-more"
+                href="https://www.notion.so/Manifest-Manifesto-21bb5ad6175e80edae51dd5383ef12d7?source=copy_link#230b5ad6175e8075acdde03484c6218b"
                 className="px-8 py-4 border border-slate-8 text-slate-12 rounded-full font-medium text-lg hover:bg-slate-3 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -334,18 +372,6 @@ export function ElevateSection() {
                 Learn More
               </motion.a>
             </motion.div>
-
-            <div className="text-sm text-slate-10 space-y-2 relative z-10">
-              <p>
-                <strong>Application Deadline:</strong> March 15, 2025
-              </p>
-              <p>
-                <strong>Cohort Size:</strong> Limited to 20 exceptional students
-              </p>
-              <p>
-                <strong>Commitment:</strong> 12 months, part-time alongside studies
-              </p>
-            </div>
           </motion.div>
         </FadeIn>
       </div>

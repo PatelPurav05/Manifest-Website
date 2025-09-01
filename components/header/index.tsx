@@ -5,13 +5,11 @@ export const Header = async () => {
   const navbar = {
     items: [
       { href: "/", _title: "Home" },
-      { href: "#programs", _title: "Programs" },
       { href: "#elevate", _title: "Elevate" },
-      { href: "#events", _title: "Events" },
-      { href: "#startups", _title: "Startups" },
       { href: "#speakers", _title: "Speakers" },
-      { href: "#faq", _title: "FAQ" },
-      { href: "/apply", _title: "Apply" }, // Link to the portal
+      { href: "#startups", _title: "Startups" },
+      { href: "#events", _title: "Events" },
+      { href: "#board", _title: "Board" },
     ],
   }
 

@@ -7,88 +7,115 @@ import { Linkedin, Twitter, Github, Mail } from 'lucide-react'
 export function BoardSection() {
   const boardMembers = [
     {
-      name: "Alex Chen",
+      name: "Shouryaa Sharma",
       role: "President",
-      year: "Senior",
+      year: "Junior",
       major: "Computer Science",
-      bio: "Serial entrepreneur with 2 successful exits. Previously interned at Meta and led product at a Y Combinator startup.",
-      image: "/placeholder.svg?height=400&width=400&text=Alex+Chen",
+      bio: "",
+      image: "/shouryaa.jpeg",
       socials: {
-        linkedin: "https://linkedin.com/in/alexchen",
-        twitter: "https://twitter.com/alexchen",
-        email: "alex@manifestuci.com",
       },
-      achievements: ["Y Combinator Alum", "Forbes 30 Under 30"],
+      achievements: ["Partner at Crater Ventures", "Investments Analyst @ Newport Capital"],
     },
     {
-      name: "Sarah Kim",
+      name: "Ariyana Abraham",
       role: "Vice President",
       year: "Junior",
       major: "Business Administration",
-      bio: "Growth expert who scaled a fintech startup from 0 to 100K users. Passionate about connecting founders with resources.",
-      image: "/placeholder.svg?height=400&width=400&text=Sarah+Kim",
+      bio: "",
+      image: "/ariyana.jpeg",
       socials: {
-        linkedin: "https://linkedin.com/in/sarahkim",
-        github: "https://github.com/sarahkim",
-        email: "sarah@manifestuci.com",
       },
-      achievements: ["Thiel Fellowship", "TechCrunch Disrupt Winner"],
+      achievements: ["VP of Finance @ MUSA and UCI Rocket"],
     },
     {
-      name: "Marcus Rodriguez",
-      role: "Head of Engineering",
+      name: "Connor Ruffalo",
+      role: "VP of Finance",
       year: "Senior",
-      major: "Software Engineering",
-      bio: "Full-stack developer and open source contributor. Built the technical infrastructure for 3 venture-backed startups.",
-      image: "/placeholder.svg?height=400&width=400&text=Marcus+Rodriguez",
+      major: "Business Economics",
+      bio: "",
+      image: "/connor.jpeg",
       socials: {
-        linkedin: "https://linkedin.com/in/marcusrodriguez",
-        github: "https://github.com/marcusrodriguez",
-        twitter: "https://twitter.com/marcusrodriguez",
-        email: "marcus@manifestuci.com",
       },
-      achievements: ["Google Summer of Code", "Open Source Contributor"],
+      achievements: ["Co-Founder @ CAPCASE", "Project Manager @ UCI Rocket"],
     },
     {
-      name: "Priya Patel",
-      role: "Head of Operations",
+      name: "Meera Phadnis",
+      role: "Co-VP of Marketing",
+      year: "Sophomore",
+      major: "",
+      bio: "",
+      image: "/meera.jpeg",
+      socials: {
+      },
+      achievements: ["Marketing @ First Tech Challenge"],
+    },
+    {
+      name: "Noah Chie",
+      role: "Co-VP of External",
+      year: "Sophomore",
+      major: "Biomedical Engineering",
+      bio: "",
+      image: "/noah.jpeg",
+      socials: {
+      },
+      achievements: ["R&D Engineer Intern @ Vena Vitals (YC S20)", "Operations Engineer @ UCI Rocket"],
+    },
+    {
+      name: "Janani Prasad",
+      role: "VP of Communications",
       year: "Junior",
-      major: "Economics",
-      bio: "Operations wizard who streamlined processes at a Series B startup. Expert in community building and event management.",
-      image: "/placeholder.svg?height=400&width=400&text=Priya+Patel",
+      major: "Computer Science",
+      bio: "",
+      image: "/janani.jpeg",
       socials: {
-        linkedin: "https://linkedin.com/in/priyapatel",
-        twitter: "https://twitter.com/priyapatel",
-        email: "priya@manifestuci.com",
       },
-      achievements: ["McKinsey Intern", "Startup Grind Organizer"],
+      achievements: ["Co-Founder @ PUG", "Software Engineer Intern @ Fortive ASP"],
     },
     {
-      name: "David Park",
-      role: "Head of Partnerships",
+      name: "Purav Patel",
+      role: "VP of Technology",
+      year: "Junior",
+      major: "Computer Science and Engineering",
+      bio: "",
+      image: "/purav.jpeg",
+      socials: {
+      },
+      achievements: ["Co-Founder @ PUG", "Technical Product Manager Intern @ First American"],
+    },
+
+    {
+      name: "Brady Ransom",
+      role: "VP of Internal Affairs",
       year: "Senior",
-      major: "Business Information Management",
-      bio: "Partnership strategist with connections across Silicon Valley. Secured funding and mentorship for 20+ student startups.",
-      image: "/placeholder.svg?height=400&width=400&text=David+Park",
+      major: "Informatics",
+      bio: "",
+      image: "/brady.jpeg",
       socials: {
-        linkedin: "https://linkedin.com/in/davidpark",
-        email: "david@manifestuci.com",
       },
-      achievements: ["500 Startups Mentor", "Angel Investor"],
+      achievements: ["Campus Partner @ Perplexity","VP of Risk Management @ NIC & Sigma Chi"],
     },
     {
-      name: "Emma Thompson",
-      role: "Head of Marketing",
-      year: "Junior",
-      major: "Digital Marketing",
-      bio: "Growth marketer who built viral campaigns reaching 1M+ users. Specializes in community-driven growth strategies.",
-      image: "/placeholder.svg?height=400&width=400&text=Emma+Thompson",
+      name: "Sheryl Gupta",
+      role: "Co-VP of Marketing",
+      year: "Senior",
+      major: "Psychology",
+      bio: "",
+      image: "/sheryl.jpeg",
       socials: {
-        linkedin: "https://linkedin.com/in/emmathompson",
-        twitter: "https://twitter.com/emmathompson",
-        email: "emma@manifestuci.com",
       },
-      achievements: ["Viral Campaign Creator", "Growth Hacker Award"],
+      achievements: ["Co-VP of Marketing @ VCS"],
+    },
+    {
+      name: "Sri Gubbala",
+      role: "Co-VP of External",
+      year: "Senior",
+      major: "CS + BIM",
+      bio: "",
+      image: "/sri.jpeg",
+      socials: {
+      },
+      achievements: ["APM @ ZotSun", "Team Lead @ CubeSat UCI"],
     },
   ]
 
@@ -108,7 +135,7 @@ export function BoardSection() {
   }
 
   return (
-    <section className="py-16 md:py-24 px-5 bg-slate-2 relative overflow-hidden">
+    <section id="board" className="py-16 md:py-24 px-5 bg-slate-2 relative overflow-hidden">
       {/* Background decoration */}
       <motion.div
         className="absolute top-20 left-20 w-40 h-40 bg-slate-4/10 rounded-full blur-3xl"
@@ -145,18 +172,14 @@ export function BoardSection() {
                 />
               </motion.span>
             </h2>
-            <p className="text-xl text-slate-11 max-w-3xl mx-auto leading-relaxed">
-              Our board members are proven builders, operators, and visionaries who've launched companies, raised
-              funding, and created real impact in the startup ecosystem.
-            </p>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
           {boardMembers.map((member, index) => (
             <motion.div
               key={member.name}
-              className={`group bg-slate-1 rounded-3xl p-8 border border-slate-6 hover:border-slate-8 transition-all duration-300 cursor-pointer relative overflow-hidden ${index >= 3 ? "hidden md:block" : ""}`}
+              className={`group bg-slate-1 rounded-3xl p-5 md:p-6 border border-slate-6 hover:border-slate-8 transition-all duration-300 cursor-pointer relative overflow-hidden`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -167,9 +190,9 @@ export function BoardSection() {
               }}
             >
               {/* Profile Image */}
-              <div className="relative mb-6">
+              <div className="relative mb-4">
                 <motion.div
-                  className="w-24 h-24 mx-auto rounded-2xl overflow-hidden bg-slate-3"
+                  className="w-20 h-20 mx-auto rounded-2xl overflow-hidden bg-slate-3"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -180,32 +203,26 @@ export function BoardSection() {
                   />
                 </motion.div>
 
-                {/* Achievement badges */}
-                <div className="absolute -top-2 -right-2">
-                  <motion.div
-                    className="w-6 h-6 bg-slate-12 rounded-full flex items-center justify-center"
-                    whileHover={{ scale: 1.2 }}
-                  >
-                    <span className="text-slate-1 text-xs">✨</span>
-                  </motion.div>
-                </div>
+                
               </div>
 
               {/* Member Info */}
-              <div className="text-center space-y-4">
+              <div className="text-center space-y-3">
                 <div>
-                  <h3 className="text-xl font-medium text-slate-12 group-hover:text-slate-11 transition-colors">
+                  <h3 className="text-lg font-medium text-slate-12 group-hover:text-slate-11 transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-slate-11 font-medium">{member.role}</p>
-                  <p className="text-sm text-slate-10">
+                  <p className="text-slate-11 text-sm font-medium">{member.role}</p>
+                  <p className="text-xs text-slate-10">
                     {member.year} • {member.major}
                   </p>
                 </div>
 
-                <p className="text-sm text-slate-11 leading-relaxed group-hover:text-slate-10 transition-colors">
-                  {member.bio}
-                </p>
+                {member.bio && (
+                  <p className="text-sm text-slate-11 leading-relaxed group-hover:text-slate-10 transition-colors">
+                    {member.bio}
+                  </p>
+                )}
 
                 {/* Achievements */}
                 <div className="flex flex-wrap gap-2 justify-center">
@@ -217,21 +234,23 @@ export function BoardSection() {
                 </div>
 
                 {/* Social Links */}
-                <div className="flex justify-center gap-3 pt-2">
-                  {Object.entries(member.socials).map(([platform, url]) => (
-                    <motion.a
-                      key={platform}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-8 h-8 bg-slate-3 hover:bg-slate-12 text-slate-11 hover:text-slate-1 rounded-full flex items-center justify-center transition-all duration-200"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {getSocialIcon(platform)}
-                    </motion.a>
-                  ))}
-                </div>
+                {Object.keys(member.socials).length > 0 && (
+                  <div className="flex justify-center gap-3 pt-2">
+                    {Object.entries(member.socials as Record<string, string>).map(([platform, url]) => (
+                      <motion.a
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-slate-3 hover:bg-slate-12 text-slate-11 hover:text-slate-1 rounded-full flex items-center justify-center transition-all duration-200"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {getSocialIcon(platform)}
+                      </motion.a>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Hover gradient overlay */}

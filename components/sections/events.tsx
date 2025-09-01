@@ -1,26 +1,31 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 import { FadeIn } from "@/components/ui/fade-in"
 
 export function EventsSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  })
 
   const eventImages = [
-    "/hands-on-workshop.png",
-    "/fireside-chat-founder.png",
-    "/weekly-builder-hours.png",
-    "/demo-day-pitch.png",
-    "/investor-roundtable.png",
-    "/vibrant-community-gathering.png",
+    "/group_pic.JPG",
+    "/IMG_3561.PNG",
+    "/IMG_7656.JPG",
+    "/IMG_1708.png",
+    "/IMG_2154.png",
+    "/IMG_6036.png",
   ]
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  useEffect(() => {
+    if (isPaused) return
+    const id = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % eventImages.length)
+    }, 3500)
+    return () => clearInterval(id)
+  }, [isPaused, eventImages.length])
 
   return (
     <section id="events" ref={containerRef} className="py-16 md:py-24 px-5 overflow-hidden">
@@ -34,47 +39,44 @@ export function EventsSection() {
           </div>
         </FadeIn>
 
-        <div className="relative h-[320px] sm:h-[420px] lg:h-[560px] overflow-hidden">
-          <motion.div
-            className="absolute inset-0 flex items-center"
-            style={{ rotate: "15deg", x, transformOrigin: "center center" }}
+        <div
+          className="relative h-[320px] sm:h-[420px] lg:h-[560px] overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div
+            className="absolute inset-0 rounded-2xl border border-slate-6 bg-slate-1 overflow-hidden cursor-pointer"
+            onClick={() => setCurrentIndex((prev) => (prev + 1) % eventImages.length)}
           >
-            <div className="flex gap-6 md:gap-8 min-w-max px-10 md:px-20">
-              {eventImages.map((src, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative cursor-pointer flex-shrink-0"
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <motion.div
-                    className="w-64 h-44 sm:w-72 sm:h-52 lg:w-80 lg:h-60 overflow-hidden rounded-2xl bg-slate-2 border border-slate-6 shadow-xl"
-                    style={{ rotate: "-15deg" }}
-                  >
-                    <motion.img
-                      src={src || "/placeholder.svg"}
-                      alt={`Manifest community event ${index + 1}`}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-slate-12/60 via-slate-12/10 to-transparent"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={eventImages[currentIndex]}
+                src={eventImages[currentIndex] || "/placeholder.svg"}
+                alt={`Manifest community event ${currentIndex + 1}`}
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.6 }}
+              />
+            </AnimatePresence>
+          </div>
 
-          <div className="absolute inset-y-0 left-0 w-20 md:w-32 bg-gradient-to-r from-slate-1 to-transparent pointer-events-none z-10" />
-          <div className="absolute inset-y-0 right-0 w-20 md:w-32 bg-gradient-to-l from-slate-1 to-transparent pointer-events-none z-10" />
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+            {eventImages.map((_, i) => (
+              <button
+                key={i}
+                aria-label={`Go to slide ${i + 1}`}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setCurrentIndex(i)
+                }}
+                className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                  i === currentIndex ? "bg-slate-12" : "bg-slate-8/60 hover:bg-slate-9/80"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
