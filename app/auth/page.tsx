@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { Suspense, useState, useMemo } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { getSupabaseClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 type Step = "request" | "verify"
 
 export default function AuthPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen py-12 px-5"><div className="max-w-md mx-auto text-slate-11">Loading…</div></div>}>
+      <AuthForm />
+    </Suspense>
+  )
+}
+
+function AuthForm() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const next = useMemo(() => searchParams.get("next") ?? "/apply", [searchParams])
