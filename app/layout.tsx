@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Viewport } from "next"
+import type { Viewport, Metadata } from "next"
 import { Geist } from "next/font/google"
 import { Providers } from "@/context"
 import { MeshGradientComponent } from "@/components/mesh-gradient"
@@ -13,6 +13,17 @@ const geistSans = Geist({
 
 export const viewport: Viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari
+}
+
+export const metadata: Metadata = {
+  title: "Manifest at UCI",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/Manifest Logo.png", type: "image/png" },
+    ],
+  },
+  generator: 'v0.dev',
 }
 
 export default async function RootLayout({
@@ -55,6 +66,4 @@ export default async function RootLayout({
   )
 }
 
-export const metadata = {
-      generator: 'v0.dev'
-    };
+// removed duplicate metadata export

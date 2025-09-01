@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 import { getSupabaseServer } from "@/lib/supabase/server"
 import { ApplyWizard } from "@/components/apply/wizard"
+import { LogoutButton } from "@/app/apply/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -49,22 +50,27 @@ export default async function ApplyPage() {
   }
 
   return (
-    <ApplyWizard
-      initialData={{
-        id: appRow!.id as any,
-        name: appRow?.name ?? "",
-        email: appRow?.email ?? user.email ?? "",
-        year: appRow?.year ?? "",
-        focus: appRow?.focus ?? "",
-        teamSize: appRow?.team_size ?? "",
-        brief: appRow?.brief ?? "",
-        problem: appRow?.problem ?? "",
-        progress: appRow?.progress ?? "",
-        links: appRow?.links ?? "",
-        applyElevate: Boolean((appRow as any)?.apply_elevate) ?? false,
-        elevateVideo: ((appRow as any)?.elevate_video as string) ?? "",
-        submitted: Boolean(appRow?.submitted_at),
-      }}
-    />
+    <>
+      <div className="max-w-4xl mx-auto pt-6 px-5 flex justify-end">
+        <LogoutButton />
+      </div>
+      <ApplyWizard
+        initialData={{
+          id: appRow!.id as any,
+          name: appRow?.name ?? "",
+          email: appRow?.email ?? user.email ?? "",
+          year: appRow?.year ?? "",
+          focus: appRow?.focus ?? "",
+          teamSize: appRow?.team_size ?? "",
+          brief: appRow?.brief ?? "",
+          problem: appRow?.problem ?? "",
+          progress: appRow?.progress ?? "",
+          links: appRow?.links ?? "",
+          applyElevate: Boolean((appRow as any)?.apply_elevate) ?? false,
+          elevateVideo: ((appRow as any)?.elevate_video as string) ?? "",
+          submitted: Boolean(appRow?.submitted_at),
+        }}
+      />
+    </>
   )
 }
