@@ -76,6 +76,34 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
     (!data.applyElevate || !!data.elevateVideo)
 
   function next() {
+    setError(null)
+    if (step === 0) {
+      const ok = Boolean(
+        data.name &&
+        data.email &&
+        data.year &&
+        data.focus &&
+        (!data.applyElevate || data.elevateVideo)
+      )
+      if (!ok) {
+        setError("Please complete required fields on this step.")
+        return
+      }
+    }
+    if (step === 1) {
+      const ok = Boolean(data.brief && data.problem)
+      if (!ok) {
+        setError("Please complete required fields on this step.")
+        return
+      }
+    }
+    if (step === 2) {
+      const ok = Boolean(data.progress)
+      if (!ok) {
+        setError("Please complete required fields on this step.")
+        return
+      }
+    }
     setStep((s) => Math.min(3, s + 1))
   }
   function back() {
@@ -138,8 +166,8 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
               <div className="space-y-5">
                 <h2 className="text-xl font-medium text-slate-12">1. Your info</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Field label="Full name" id="name" value={data.name} onChange={(v) => setData((d) => ({ ...d, name: v }))} placeholder="Jane Doe" />
-                  <Field label="Email" id="email" type="email" value={data.email} onChange={(v) => setData((d) => ({ ...d, email: v }))} placeholder="jane@uci.edu" />
+                  <Field required label="Full name" id="name" value={data.name} onChange={(v) => setData((d) => ({ ...d, name: v }))} placeholder="Jane Doe" />
+                  <Field required label="Email" id="email" type="email" value={data.email} onChange={(v) => setData((d) => ({ ...d, email: v }))} placeholder="jane@uci.edu" />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <SelectField
@@ -147,6 +175,7 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                     id="year"
                     value={data.year}
                     onChange={(v) => setData((d) => ({ ...d, year: v }))}
+                    required
                     options={[
                       { value: "", label: "Select year", disabled: true },
                       { value: "freshman", label: "Freshman" },
@@ -161,6 +190,7 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                     id="focus"
                     value={data.focus}
                     onChange={(v) => setData((d) => ({ ...d, focus: v }))}
+                    required
                     options={[
                       { value: "", label: "Select focus", disabled: true },
                       { value: "engineering", label: "Engineering" },
@@ -197,6 +227,7 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                         value={data.elevateVideo || ''}
                         onChange={(v) => setData((d) => ({ ...d, elevateVideo: v }))}
                         placeholder="https://..."
+                        required
                       />
                     </div>
                   )}
@@ -207,15 +238,15 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
             {step === 1 && (
               <div className="space-y-5">
                 <h2 className="text-xl font-medium text-slate-12">2. What you're building</h2>
-                <TextAreaField label="Idea / product (2–4 sentences)" id="brief" rows={5} value={data.brief} onChange={(v) => setData((d) => ({ ...d, brief: v }))} placeholder="What are you building or hoping to build?" />
-                <TextAreaField label="Problem and who it helps" id="problem" rows={4} value={data.problem} onChange={(v) => setData((d) => ({ ...d, problem: v }))} placeholder="Explain the user, pain point, and why now." />
+                <TextAreaField required label="Idea / product (2–4 sentences)" id="brief" rows={5} value={data.brief} onChange={(v) => setData((d) => ({ ...d, brief: v }))} placeholder="What are you building or hoping to build?" />
+                <TextAreaField required label="Problem and who it helps" id="problem" rows={4} value={data.problem} onChange={(v) => setData((d) => ({ ...d, problem: v }))} placeholder="Explain the user, pain point, and why now." />
               </div>
             )}
 
             {step === 2 && (
               <div className="space-y-5">
                 <h2 className="text-xl font-medium text-slate-12">3. Progress</h2>
-                <TextAreaField label="Progress and next milestone" id="progress" rows={5} value={data.progress} onChange={(v) => setData((d) => ({ ...d, progress: v }))} placeholder="What have you shipped? Any users or traction? What's next in 2–4 weeks?" />
+                <TextAreaField required label="Progress and next milestone" id="progress" rows={5} value={data.progress} onChange={(v) => setData((d) => ({ ...d, progress: v }))} placeholder="What have you shipped? Any users or traction? What's next in 2–4 weeks?" />
                 <Field label="Links (portfolio, GitHub, product, etc.) — optional" id="links" value={data.links} onChange={(v) => setData((d) => ({ ...d, links: v }))} placeholder="https://github.com/username, https://product.com" />
               </div>
             )}
@@ -291,12 +322,14 @@ function SelectField({
   value,
   onChange,
   options,
+  required,
 }: {
   label: string
   id: string
   value: string
   onChange: (v: string) => void
   options: Array<{ value: string; label: string; disabled?: boolean }>
+  required?: boolean
 }) {
   return (
     <div className="space-y-2">
@@ -307,6 +340,7 @@ function SelectField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="h-11 w-full rounded-lg border border-slate-6 bg-slate-1 px-3 text-sm text-slate-12"
+        required={required}
       >
         {options.map((opt) => (
           <option key={opt.value} value={opt.value} disabled={opt.disabled}>
@@ -325,6 +359,7 @@ function Field({
   onChange,
   placeholder,
   type = "text",
+  required,
 }: {
   label: string
   id: string
@@ -332,6 +367,7 @@ function Field({
   onChange: (v: string) => void
   placeholder?: string
   type?: string
+  required?: boolean
 }) {
   return (
     <div className="space-y-2">
@@ -344,6 +380,7 @@ function Field({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className="h-11 w-full rounded-lg border border-slate-6 bg-slate-1 px-3 text-sm text-slate-12 placeholder:text-slate-9"
+        required={required}
       />
     </div>
   )
@@ -356,6 +393,7 @@ function TextAreaField({
   onChange,
   placeholder,
   rows = 4,
+  required,
 }: {
   label: string
   id: string
@@ -363,6 +401,7 @@ function TextAreaField({
   onChange: (v: string) => void
   placeholder?: string
   rows?: number
+  required?: boolean
 }) {
   return (
     <div className="space-y-2">
@@ -375,6 +414,7 @@ function TextAreaField({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className="w-full rounded-lg border border-slate-6 bg-slate-1 p-3 text-sm text-slate-12 placeholder:text-slate-9"
+        required={required}
       />
     </div>
   )
