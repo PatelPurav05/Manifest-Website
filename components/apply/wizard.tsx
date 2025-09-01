@@ -18,6 +18,8 @@ type ApplicationData = {
   problem: string
   progress: string
   links: string
+  applyElevate?: boolean
+  elevateVideo?: string
   submitted?: boolean
 }
 
@@ -43,11 +45,12 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
           email: data.email,
           year: data.year,
           focus: data.focus,
-          team_size: data.teamSize,
           brief: data.brief,
           problem: data.problem,
           progress: data.progress,
           links: data.links,
+          apply_elevate: Boolean(data.applyElevate),
+          elevate_video: data.elevateVideo || null,
         })
         if (!res.success) {
           setStatus("error")
@@ -63,7 +66,14 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
   }, [data])
 
   const canSubmit =
-    data.name && data.email && data.year && data.focus && data.brief && data.problem && data.progress
+    data.name &&
+    data.email &&
+    data.year &&
+    data.focus &&
+    data.brief &&
+    data.problem &&
+    data.progress &&
+    (!data.applyElevate || !!data.elevateVideo)
 
   function next() {
     setStep((s) => Math.min(3, s + 1))
@@ -131,7 +141,7 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                   <Field label="Full name" id="name" value={data.name} onChange={(v) => setData((d) => ({ ...d, name: v }))} placeholder="Jane Doe" />
                   <Field label="Email" id="email" type="email" value={data.email} onChange={(v) => setData((d) => ({ ...d, email: v }))} placeholder="jane@uci.edu" />
                 </div>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <SelectField
                     label="Year"
                     id="year"
@@ -160,18 +170,36 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                       { value: "research", label: "Research" },
                     ]}
                   />
-                  <SelectField
-                    label="Team size"
-                    id="teamSize"
-                    value={data.teamSize}
-                    onChange={(v) => setData((d) => ({ ...d, teamSize: v }))}
-                    options={[
-                      { value: "", label: "Select size", disabled: true },
-                      { value: "solo", label: "Solo" },
-                      { value: "2-3", label: "2-3" },
-                      { value: "4+", label: "4+" },
-                    ]}
-                  />
+                </div>
+                <div className="grid md:grid-cols-3 gap-4 items-end">
+                  <div className="md:col-span-1">
+                    <label className="text-sm text-slate-11">Apply to Elevate?</label>
+                    <div className="mt-2 flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setData((d) => ({ ...d, applyElevate: !d.applyElevate }))}
+                        className={`h-6 w-11 rounded-full transition-colors ${data.applyElevate ? 'bg-slate-12' : 'bg-slate-6'}`}
+                        aria-pressed={Boolean(data.applyElevate)}
+                        aria-label="Toggle Elevate application"
+                      >
+                        <span
+                          className={`block h-5 w-5 bg-slate-1 rounded-full translate-x-[3px] transition-transform ${data.applyElevate ? 'translate-x-[22px]' : ''}`}
+                        />
+                      </button>
+                      <span className="text-sm text-slate-11">{data.applyElevate ? 'Yes' : 'No'}</span>
+                    </div>
+                  </div>
+                  {data.applyElevate && (
+                    <div className="md:col-span-2">
+                      <Field
+                        label="1-min intro video link (required for Elevate)"
+                        id="elevateVideo"
+                        value={data.elevateVideo || ''}
+                        onChange={(v) => setData((d) => ({ ...d, elevateVideo: v }))}
+                        placeholder="https://..."
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -200,7 +228,10 @@ export function ApplyWizard({ initialData }: { initialData: ApplicationData }) {
                   <ReviewRow label="Email" value={data.email} />
                   <ReviewRow label="Year" value={data.year} />
                   <ReviewRow label="Focus" value={data.focus} />
-                  <ReviewRow label="Team size" value={data.teamSize} />
+                  <ReviewRow label="Applying to Elevate" value={data.applyElevate ? 'Yes' : 'No'} />
+                  {data.applyElevate && (
+                    <ReviewRow label="Elevate intro video" value={data.elevateVideo || '—'} />
+                  )}
                 </ReviewBlock>
                 <ReviewBlock title="Project">
                   <ReviewRow label="Idea / product" value={data.brief} multiline />

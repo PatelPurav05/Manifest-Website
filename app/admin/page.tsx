@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { AdminAppsTable } from "./apps-table"
 import { redirect } from "next/navigation"
 import { getSupabaseServer } from "@/lib/supabase/server"
 
@@ -19,7 +19,8 @@ export default async function AdminDashboardPage() {
 
   const { data: apps, error } = await supabase
     .from("applications")
-    .select("id, name, email, year, focus, submitted_at, created_at, updated_at")
+    .select("id, name, email, year, focus, submitted_at, created_at, updated_at, apply_elevate")
+    .not('submitted_at', 'is', null)
     .order("created_at", { ascending: false })
   if (error) {
     return <div className="max-w-4xl mx-auto p-6">Failed to load applications: {error.message}</div>
@@ -47,37 +48,7 @@ export default async function AdminDashboardPage() {
           <div className="text-slate-11 text-sm">Signed in as {profile.full_name ?? user.email}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-6 overflow-hidden">
-          <div className="grid grid-cols-12 bg-slate-2 p-3 text-sm text-slate-11">
-            <div className="col-span-4">Applicant</div>
-            <div className="col-span-2">Year</div>
-            <div className="col-span-2">Focus</div>
-            <div className="col-span-2">Submitted</div>
-            <div className="col-span-2 text-right">Votes</div>
-          </div>
-          <div className="divide-y divide-slate-6">
-            {apps?.map((a) => {
-              const c = counts.get(a.id) ?? { yes: 0, maybe: 0, no: 0 }
-              return (
-                <Link key={a.id} href={`/admin/applications/${a.id}`} className="grid grid-cols-12 p-3 hover:bg-slate-2 transition-colors">
-                  <div className="col-span-4">
-                    <div className="text-slate-12 font-medium">{a.name || a.email}</div>
-                    <div className="text-slate-10 text-xs">{a.email}</div>
-                  </div>
-                  <div className="col-span-2">{a.year || "—"}</div>
-                  <div className="col-span-2">{a.focus || "—"}</div>
-                  <div className="col-span-2">{a.submitted_at ? new Date(a.submitted_at as any).toLocaleDateString() : "Draft"}</div>
-                  <div className="col-span-2 text-right text-sm">
-                    <span className="mr-2">✅ {c.yes}</span>
-                    <span className="mr-2">🤔 {c.maybe}</span>
-                    <span>❌ {c.no}</span>
-                  </div>
-                </Link>
-              )
-            })}
-            {!apps?.length && <div className="p-4 text-slate-11">No applications yet.</div>}
-          </div>
-        </div>
+        <AdminAppsTable apps={apps ?? []} counts={counts} />
       </div>
     </div>
   )

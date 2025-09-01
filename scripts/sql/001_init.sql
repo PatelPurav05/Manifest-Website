@@ -26,6 +26,10 @@ create table if not exists public.applications (
   updated_at timestamp with time zone default now()
 );
 
+-- Ensure columns exist when upgrading
+alter table if exists public.applications add column if not exists apply_elevate boolean default false;
+alter table if exists public.applications add column if not exists elevate_video text;
+
 -- Admin comments
 create table if not exists public.admin_comments (
   id uuid primary key default gen_random_uuid(),
@@ -52,14 +56,17 @@ alter table public.admin_comments enable row level security;
 alter table public.admin_votes enable row level security;
 
 -- Profiles policies
+drop policy if exists "users can read own profile" on public.profiles;
 create policy "users can read own profile"
   on public.profiles for select
   using (auth.uid() = user_id);
 
+drop policy if exists "users can upsert own profile" on public.profiles;
 create policy "users can upsert own profile"
   on public.profiles for insert
   with check (auth.uid() = user_id);
 
+drop policy if exists "users can update own profile" on public.profiles;
 create policy "users can update own profile"
   on public.profiles for update
   using (auth.uid() = user_id);
@@ -69,39 +76,47 @@ create policy "users can update own profile"
 -- No function needed; we use EXISTS(select 1 from profiles ...)
 
 -- Applications policies
+drop policy if exists "owner can insert application" on public.applications;
 create policy "owner can insert application"
   on public.applications for insert
   with check (auth.uid() = user_id);
 
+drop policy if exists "owner can select application" on public.applications;
 create policy "owner can select application"
   on public.applications for select
   using (auth.uid() = user_id
     or exists (select 1 from profiles p where p.user_id = auth.uid() and p.role = 'admin'));
 
+drop policy if exists "owner can update application" on public.applications;
 create policy "owner can update application"
   on public.applications for update
   using (auth.uid() = user_id);
 
 -- Admin-only comments
+drop policy if exists "admins can select comments" on public.admin_comments;
 create policy "admins can select comments"
   on public.admin_comments for select
   using (exists (select 1 from profiles p where p.user_id = auth.uid() and p.role = 'admin'));
 
+drop policy if exists "admins can insert comments" on public.admin_comments;
 create policy "admins can insert comments"
   on public.admin_comments for insert
   with check (exists (select 1 from profiles p where p.user_id = auth.uid() and p.role = 'admin')
               and admin_id = auth.uid());
 
 -- Admin-only votes
+drop policy if exists "admins can select votes" on public.admin_votes;
 create policy "admins can select votes"
   on public.admin_votes for select
   using (exists (select 1 from profiles p where p.user_id = auth.uid() and p.role = 'admin'));
 
+drop policy if exists "admins can upsert votes" on public.admin_votes;
 create policy "admins can upsert votes"
   on public.admin_votes for insert
   with check (exists (select 1 from profiles p where p.user_id = auth.uid() and p.role = 'admin')
               and admin_id = auth.uid());
 
+drop policy if exists "admins can update votes" on public.admin_votes;
 create policy "admins can update votes"
   on public.admin_votes for update
   using (exists (select 1 from profiles p where p.user_id = auth.uid() and p.role = 'admin')

@@ -39,6 +39,7 @@ export default async function AdminApplicationDetail({ params }: { params: { id:
       app={app}
       comments={comments ?? []}
       myVote={myVote?.selection ?? null}
+      adminId={user.id}
     />
   )
 }

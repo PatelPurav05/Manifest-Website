@@ -14,6 +14,8 @@ export async function saveDraft(input: {
   problem?: string
   progress?: string
   links?: string
+  apply_elevate?: boolean
+  elevate_video?: string | null
 }) {
   const supabase = await getSupabaseServer()
   const {
@@ -33,6 +35,8 @@ export async function saveDraft(input: {
       problem: input.problem,
       progress: input.progress,
       links: input.links,
+      apply_elevate: input.apply_elevate,
+      elevate_video: input.elevate_video,
       updated_at: new Date().toISOString(),
     })
     .eq("id", input.id)

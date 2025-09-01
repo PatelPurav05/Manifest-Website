@@ -61,6 +61,8 @@ export default async function ApplyPage() {
         problem: appRow?.problem ?? "",
         progress: appRow?.progress ?? "",
         links: appRow?.links ?? "",
+        applyElevate: Boolean((appRow as any)?.apply_elevate) ?? false,
+        elevateVideo: ((appRow as any)?.elevate_video as string) ?? "",
         submitted: Boolean(appRow?.submitted_at),
       }}
     />
