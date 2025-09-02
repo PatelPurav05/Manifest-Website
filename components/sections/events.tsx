@@ -10,10 +10,19 @@ export function EventsSection() {
   const eventImages = [
     "/group_pic.JPG",
     "/IMG_3561.PNG",
+    "/IMG_6036.png",
     "/IMG_7656.JPG",
     "/IMG_1708.png",
     "/IMG_2154.png",
-    "/IMG_6036.png",
+  ]
+
+  const eventDates = [
+    "April 2025",
+    "April 2025",
+    "April 2025",
+    "May 2025",
+    "May 2025",
+    "May 2025",
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -60,6 +69,12 @@ export function EventsSection() {
                 transition={{ duration: 0.6 }}
               />
             </AnimatePresence>
+
+            <div className="absolute bottom-4 left-4 z-20">
+              <span className="rounded-md bg-slate-1/80 backdrop-blur px-3 py-1.5 text-sm md:text-base border border-slate-6 text-slate-12 shadow-sm">
+                {eventDates[currentIndex]}
+              </span>
+            </div>
           </div>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
