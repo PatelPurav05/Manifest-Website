@@ -345,7 +345,7 @@ export function ElevateSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <motion.a
+              {/* <motion.a
                 href="/apply"
                 className="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-medium text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg relative overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
@@ -361,7 +361,7 @@ export function ElevateSection() {
                   <Rocket className="w-5 h-5" />
                   Apply for Elevate 2025
                 </span>
-              </motion.a>
+              </motion.a> */}
 
               <motion.a
                 href="https://www.notion.so/Manifest-Manifesto-21bb5ad6175e80edae51dd5383ef12d7?source=copy_link#230b5ad6175e8075acdde03484c6218b"

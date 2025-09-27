@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
-import { ApplyCTA } from "@/components/apply-cta"
+// import { ApplyCTA } from "@/components/apply-cta"
 import { HeroSection } from "@/components/sections/hero"
 import { ProgramsSection } from "@/components/sections/programs"
 import { MetricsSection } from "@/components/sections/metrics"
@@ -24,7 +24,7 @@ export default async function Page() {
   return (
     <div className="min-h-screen">
       <Header />
-      <ApplyCTA />
+      {/* <ApplyCTA /> */}
 
       {/* Above-the-fold: hero + social proof */}
       <HeroSection />

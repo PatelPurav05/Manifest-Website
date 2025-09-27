@@ -49,7 +49,7 @@ export function HeroSection() {
 
         <FadeIn delay={0.5} direction="up" distance={30}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <motion.a
+            {/* <motion.a
               href="/apply"
               className="px-8 py-4 bg-slate-12 text-slate-1 rounded-full font-medium text-lg hover:bg-slate-11 transition-colors relative overflow-hidden group"
               whileHover={{ scale: 1.05 }}
@@ -62,7 +62,7 @@ export function HeroSection() {
                 transition={{ duration: 0.3 }}
               />
               <span className="relative z-10">Join the Community</span>
-            </motion.a>
+            </motion.a> */}
 
             <motion.a
               href="https://www.notion.so/Manifest-Manifesto-21bb5ad6175e80edae51dd5383ef12d7"
