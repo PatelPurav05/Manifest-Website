@@ -36,7 +36,7 @@ export function TestimonialsSection() {
       image: "/hana.jpeg",
       socials: {
       },
-      achievements: ["Co-Founder & Board Advisor @ OOTify"],
+      achievements: ["Board Advisor @ OOTify"],
     },
     {
       name: "Dylan Riffle",

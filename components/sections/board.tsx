@@ -211,9 +211,6 @@ export function BoardSection() {
                     {member.name}
                   </h3>
                   <p className="text-slate-11 text-sm font-medium">{member.role}</p>
-                  <p className="text-xs text-slate-10">
-                    {member.year} • {member.major}
-                  </p>
                 </div>
 
                 {member.bio && (
@@ -253,7 +250,7 @@ export function BoardSection() {
 
               {/* Hover gradient overlay */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-slate-12/5 to-transparent rounded-3xl"
+                className="absolute inset-0 bg-gradient-to-br from-slate-12/5 to-transparent rounded-3xl pointer-events-none"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}

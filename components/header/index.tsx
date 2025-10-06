@@ -7,7 +7,6 @@ export const Header = () => {
   const navbar = {
     items: [
       { href: "/", _title: "Home" },
-      { href: "#elevate", _title: "Elevate" },
       { href: "#speakers", _title: "Speakers" },
       { href: "#startups", _title: "Startups" },
       { href: "#events", _title: "Events" },
