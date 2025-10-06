@@ -4,7 +4,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/sections/hero"
 import { ProgramsSection } from "@/components/sections/programs"
 import { MetricsSection } from "@/components/sections/metrics"
-import { ElevateSection } from "@/components/sections/elevate"
+// import { ElevateSection } from "@/components/sections/elevate"
 import { EventsSection } from "@/components/sections/events"
 import { ShowcaseSection } from "@/components/sections/showcase"
 import { PastSpeakersSection } from "@/components/sections/speakers"
@@ -37,7 +37,7 @@ export default async function Page() {
       <ShowcaseSection />
 
       {/* Condensed Elevate + Events */}
-      <ElevateSection />
+      {/* <ElevateSection /> */}
       <EventsSection />
 
       {/* Credibility + questions */}

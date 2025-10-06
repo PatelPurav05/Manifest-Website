@@ -14,6 +14,7 @@ export function BoardSection() {
       bio: "",
       image: "/shouryaa.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/shouryaasharma",
       },
       achievements: ["Partner at Crater Ventures", "Investments Analyst @ Newport Capital"],
     },
@@ -25,6 +26,7 @@ export function BoardSection() {
       bio: "",
       image: "/ariyana.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/ariyanaabraham",
       },
       achievements: ["VP of Finance @ MUSA and UCI Rocket"],
     },
@@ -36,6 +38,7 @@ export function BoardSection() {
       bio: "",
       image: "/connor.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/cruffalo",
       },
       achievements: ["Co-Founder @ CAPCASE", "Project Manager @ UCI Rocket"],
     },
@@ -47,6 +50,7 @@ export function BoardSection() {
       bio: "",
       image: "/meera.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/meeraphadnis",
       },
       achievements: ["Marketing @ First Tech Challenge"],
     },
@@ -58,6 +62,7 @@ export function BoardSection() {
       bio: "",
       image: "/noah.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/noah-chie",
       },
       achievements: ["R&D Engineer Intern @ Vena Vitals (YC S20)", "Operations Engineer @ UCI Rocket"],
     },
@@ -69,6 +74,7 @@ export function BoardSection() {
       bio: "",
       image: "/janani.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/jananiprasad8",
       },
       achievements: ["Co-Founder @ PUG", "Software Engineer Intern @ Fortive ASP"],
     },
@@ -80,31 +86,22 @@ export function BoardSection() {
       bio: "",
       image: "/purav.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/puravp05",
       },
       achievements: ["Co-Founder @ PUG", "Technical Product Manager Intern @ First American"],
     },
 
     {
-      name: "Brady Ransom",
+      name: "Braden Ransom",
       role: "VP of Internal Affairs",
       year: "Senior",
       major: "Informatics",
       bio: "",
       image: "/brady.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/brady-ransom",
       },
       achievements: ["Campus Partner @ Perplexity","VP of Risk Management @ NIC & Sigma Chi"],
-    },
-    {
-      name: "Sheryl Gupta",
-      role: "Co-VP of Marketing",
-      year: "Senior",
-      major: "Psychology",
-      bio: "",
-      image: "/sheryl.jpeg",
-      socials: {
-      },
-      achievements: ["Co-VP of Marketing @ VCS"],
     },
     {
       name: "Sri Gubbala",
@@ -114,6 +111,7 @@ export function BoardSection() {
       bio: "",
       image: "/sri.jpeg",
       socials: {
+        linkedin: "https://www.linkedin.com/in/sriharshini-gubbala-283740246",
       },
       achievements: ["APM @ ZotSun", "Team Lead @ CubeSat UCI"],
     },
@@ -175,7 +173,7 @@ export function BoardSection() {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {boardMembers.map((member, index) => (
             <motion.div
               key={member.name}
@@ -224,14 +222,14 @@ export function BoardSection() {
                   </p>
                 )}
 
-                {/* Achievements */}
-                <div className="flex flex-wrap gap-2 justify-center">
+                {/* Achievements hidden temporarily */}
+                {/* <div className="flex flex-wrap gap-2 justify-center">
                   {member.achievements.map((achievement, i) => (
                     <span key={i} className="px-3 py-1 bg-slate-12 text-slate-1 text-xs rounded-full font-medium">
                       {achievement}
                     </span>
                   ))}
-                </div>
+                </div> */}
 
                 {/* Social Links */}
                 {Object.keys(member.socials).length > 0 && (
