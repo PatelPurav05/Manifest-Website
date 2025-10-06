@@ -1,17 +1,4 @@
-![Open Graph, Waitlist](https://github.com/basehub-ai/waitlist-template/blob/main/public/waitlist-template.png?raw=true)
 
-[BaseHub Templates](https://basehub.com/templates) are production-ready website templates, powered by BaseHub.
-
-# Waitlist Template
-
-[![Use template](https://basehub.com/template-button.svg)](https://basehub.com/basehub/waitlist-template)
-
-Fully featured Waitlist Template.
-
-- 🔸 Ideal for startups and indie hackers seeking to build a waitlist for early adopters
-- 🔸 Allows for sending personalized emails to subscribers, encouraging interaction and excitement, all in BaseHub.
-- 🔸 Fully customizable to match your brand's voice and style
-- 🔸 Seamlessly integrates with BaseHub, ensuring a smooth process for managing your waitlist and sending newsletters
 
 ## Stack
 
@@ -38,7 +25,6 @@ pnpm i
 \`\`\`txt
 # .env.local
 
-BASEHUB_TOKEN="<get-it-from-your-basehub-repo>"
 RESEND_API_KEY="" # get it here https://resend.com/
 \`\`\`
 
