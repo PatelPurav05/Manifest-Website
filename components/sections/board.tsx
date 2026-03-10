@@ -76,7 +76,7 @@ export function BoardSection() {
       socials: {
         linkedin: "https://www.linkedin.com/in/jananiprasad8",
       },
-      achievements: ["Co-Founder @ PUG", "Software Engineer Intern @ Fortive ASP"],
+      achievements: ["Co-Founder @ Clayzo", "Software Engineer Intern @ Fortive ASP"],
     },
     {
       name: "Purav Patel",
@@ -88,7 +88,7 @@ export function BoardSection() {
       socials: {
         linkedin: "https://www.linkedin.com/in/puravp05",
       },
-      achievements: ["Co-Founder @ PUG", "Technical Product Manager Intern @ First American"],
+      achievements: ["Co-Founder @ Clayzo", "Technical Product Manager Intern @ First American"],
     },
 
     {

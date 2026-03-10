@@ -18,10 +18,12 @@ export function ShowcaseSection() {
       img: "/ootify.png",
     },
     {
-      name: "PUG",
+      name: "Clayzo",
       badge: "Pre-Seed",
       stat: "Backed by Afore Capital",
-      img: "/pug-logo.webp",
+      img: "/logo-no-bg.png",
+      imageFit: "contain",
+      imageShellClassName: "bg-[#f5ebe0]",
     },
     {
       name: "Magma",
@@ -52,11 +54,11 @@ export function ShowcaseSection() {
               transition={{ duration: 0.5, delay: i * 0.05 }}
               whileHover={{ scale: 1.01 }}
             >
-              <div className="relative aspect-[5/4] overflow-hidden">
+              <div className={`relative aspect-[5/4] overflow-hidden ${s.imageShellClassName || ""}`}>
                 <motion.img
                   src={s.img || "/placeholder.svg"}
                   alt={`${s.name} product`}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full ${s.imageFit === "contain" ? "object-contain p-8 sm:p-10" : "object-cover"}`}
                   whileHover={{ scale: 1.06 }}
                   transition={{ duration: 0.6 }}
                 />
